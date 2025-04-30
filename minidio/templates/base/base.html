@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <title>MiniDio -
+            {% block title %}{% endblock %}
+        </title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}"
+              rel="stylesheet">
+        <link href="{% static 'lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css' %}"
+              rel="stylesheet" />
+        <link href="{% static 'img/favicon.ico' %}" rel="icon">
+        <link href="{% static "css/style.min.css" %}" rel="stylesheet" />
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css" />
+        <script defer src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script defer
+                src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script defer src="{% static "lib/easing/easing.min.js" %}"></script>
+        <script defer src="{% static "lib/waypoints/waypoints.min.js" %}"></script>
+        <script defer src="{% static "lib/owlcarousel/owl.carousel.min.js" %}"></script>
+        <script defer src="{% static "lib/tempusdominus/js/moment.min.js" %}"></script>
+        <script defer
+                src="{% static "lib/tempusdominus/js/moment-timezone.min.js" %}"></script>
+        <script defer
+                src="{% static "lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js" %}"></script>
+        <script defer src="{% static "js/main.js" %}"></script>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {% include "base/navbar.html" %}
+        {% block content %}{{ block.super }}{% endblock %}
+        {% include "base/footer.html" %}
+    </body>
+</html>

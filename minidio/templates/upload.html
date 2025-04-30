@@ -1,0 +1,90 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load markdown_extras %}
+{% block title %}Upload{% endblock %}
+{% block head %}
+  <link href="{% static "css/markdown.css" %}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+    <!-- Carousel Start -->
+    <div id="home" class="container-fluid p-0 mb-5">
+        <div id="blog-carousel"
+             class="carousel slide overlay-bottom"
+             data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="{% static 'img/meeting.png' %}" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <h2 class="text-primary font-weight-medium m-0">Upload Meeting Audio</h2>
+                        <h1 class="display-1 text-white m-0"></h1>
+                        <!-- Upload Form -->
+                        <form id="uploadForm"
+                              action="{% url 'upload' %}"
+                              method="post"
+                              enctype="multipart/form-data"
+                              class="upload-form-wrapper w-100 px-5">
+                            {% csrf_token %}
+
+                            <!-- Errors -->
+                            {% if form.errors %}
+                                <div class="alert alert-danger w-100">{{ form.errors }}</div>
+                            {% endif %}
+
+                            <!-- Language Selection -->
+                            <div class="acrylic-box p-4 mb-3 w-100" style="max-width: 600px;">
+                                <label for="languageSelect">Select Language</label>
+                                <select class="form-control mt-2" id="languageSelect" name="language" required>
+                                    {% for lang_value, lang_name in form.LANGUAGE_CHOICES %}
+                                        <option value="{{ lang_value }}">{{ lang_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <!-- File Upload -->
+                            <div class="acrylic-box p-4 mb-3 w-100" style="max-width: 600px;">
+                                <label for="audioUpload">Choose Audio File</label>
+                                <div class="custom-file mt-2">
+                                    <input type="file"
+                                           class="custom-file-input"
+                                           id="audioUpload"
+                                           name="audio_file"
+                                           accept="audio/*"
+                                           required>
+                                    <label class="custom-file-label" for="audioUpload">Choose file</label>
+                                </div>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary mt-2">Upload</button>
+                        </form>
+
+                        <!-- Upload Form End -->
+                        <!-- Output Section -->
+                        {% if minutes %}
+                            <div id="minutesOutput"
+                                 class="output-box mt-4 w-100"
+                                 style="max-width: 900px;
+                                        max-height: 500px;
+                                        overflow: auto;
+                                        padding: 2rem;
+                                        background: rgba(255, 255, 255, 0.1);
+                                        border-radius: 12px;
+                                        backdrop-filter: blur(10px);
+                                        -webkit-backdrop-filter: blur(10px);
+                                        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                                        border: 1px solid rgba(255, 255, 255, 0.3)">
+{#                                <h3 class="text-white mb-3">Meeting Minutes</h3>#}
+                                <div id="minutesText" class="text-white markdown-body">{{ minutes|markdown }}</div>
+                            </div>
+                        {% endif %}
+                        <!-- carousel-caption -->
+                    </div>
+                    <!-- carousel-item -->
+                </div>
+                <!-- carousel-inner -->
+            </div>
+            <!-- carousel -->
+        </div>
+        <!-- home -->
+        <!-- Carousel End -->
+    {% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}Chat{% endblock %}
+{% block content %}
+
+<div id="chat-box" class="space-y-4">
+    {% for message in messages %}
+        {% include "chat/message_loader.html" with message=message %}
+    {% endfor %}
+</div>
+
+<form 
+    id="chat-form"
+    hx-post="{% url 'send_message' conversation.id %}"
+    hx-target="#chat-box"
+    hx-swap="afterend"
+    hx-on::after-request="this.reset();"
+    class="mt-4 d-flex"
+>
+    {% csrf_token %}
+    <input
+        type="text"
+        name="message"
+        class="form-control mr-2"
+        placeholder="Type your message..."
+        required
+    />
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
+    </div>
+
+{% endblock %}

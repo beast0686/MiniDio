@@ -1,0 +1,45 @@
+.language-selection-box, .file-upload-box {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+}
+
+.custom-file-input ~ .custom-file-label::after {
+    content: "Browse";
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    color: white;
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: none;
+}
+
+.file-upload-box .custom-file-label {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.language-selection-box label, .file-upload-box label {
+    font-weight: bold;
+    color: white;
+}
+
+.upload-area {
+    max-width: 500px;
+    width: 100%;
+}
+
+.output-box {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 80%;
+    margin: auto;
+}
