@@ -1,0 +1,2 @@
+# MiniDio
+Meeting Minutes Generator
